@@ -1,6 +1,6 @@
 # (product) grid to (product) preview
 
-*A description of the demo goes here.*
+A quick design experiment inspired this tutorial on animating e-commerce product cards into a full preview—right inside the grid. Using HTML, CSS, JavaScript, and GSAP, the effect is built with a focus on simplicity and visual tricks to create a seamless hover interaction.
 
 ![Image Title](https://generative-placeholders.glitch.me/image?width=800&height=600")
 
@@ -36,7 +36,7 @@ npm run preview
 
 ## Credits
 
-- Creative concept by [Gaetan Ferhah](https://openai.com/index/dall-e/)
+- Creative concept by [Gaetan Ferhah](https://gaetanferhah.com/)
 - Images generated with [DALL·E (OpenAI)](https://openai.com/index/dall-e/)
 
 ## Misc
@@ -47,5 +47,3 @@ Follow Codrops: [Bluesky](https://bsky.app/profile/codrops.bsky.social), [Facebo
 
 ## License
 [MIT](LICENSE)
-
-# codrops-grid-to-preview
