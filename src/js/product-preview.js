@@ -2,18 +2,8 @@ import { gsap } from 'gsap'
 
 export default class ProductPreview {
   constructor({ products, container }) {
-    this.container = container
-    this.masked = this.container.querySelector('.masked-preview')
-    this.products = products
-    this.scaleFactor = 5
-    this.armWidth = {
-      x: 10,
-      y: 10
-    }
-
-    const allPreviewImages = this.container.querySelector('.product-preview__images').children
-
     // Group by product ID
+    const allPreviewImages = container.querySelector('.product-preview__images').children
     const previewImages = {}
     Array.from(allPreviewImages).forEach((img) => {
       const id = img.dataset.id
@@ -24,19 +14,25 @@ export default class ProductPreview {
     })
 
     this.ui = {
-      title: this.container.querySelector('.product-title'),
-      price: this.container.querySelector('.product-price'),
+      products,
+      container: container,
+      clipped: container.querySelector('.masked-preview'),
+      title: container.querySelector('.product-title'),
+      price: container.querySelector('.product-price'),
       allPreviewImages: allPreviewImages,
       previewImagesPerID: previewImages
     }
 
-    this.galleryTimeline = null
+    this.scaleFactor = 5
+    this.armWidth = { x: 10, y: 10 }
+    this.galleryTimeline
+    this.timeline
+
     this.init()
   }
 
   init() {
-    this.onResize()
-    this.buildTimeline()
+    this.onResize() // build timeline is called within onResize
   }
 
   setProduct(product) {
@@ -60,18 +56,13 @@ export default class ProductPreview {
     const { x, y } = this.armWidth
 
     this.timeline = gsap
-      .timeline({
-        paused: true,
-        defaults: {
-          ease: 'power2.inOut'
-        }
-      })
+      .timeline({ paused: true, defaults: { ease: 'power2.inOut' } })
       .addLabel('preview', 0)
       .addLabel('products', 0)
-      .fromTo(this.container, { opacity: 0 }, { opacity: 1 }, 'preview')
-      .fromTo(this.container, { scale: 1 }, { scaleX: this.scaleFactor.x, scaleY: this.scaleFactor.y, transformOrigin: 'center center' }, 'preview')
+      .to(this.ui.container, { opacity: 1 }, 'preview')
+      .to(this.ui.container, { scaleX: this.scaleFactor.x, scaleY: this.scaleFactor.y, transformOrigin: 'center center' }, 'preview')
       .to(
-        this.products,
+        this.ui.products,
         {
           opacity: 0,
           x: (i) => {
@@ -84,7 +75,7 @@ export default class ProductPreview {
         'products'
       )
       .fromTo(
-        this.masked,
+        this.ui.clipped,
         {
           clipPath: `polygon(
         ${50 - x / 2}% 0%,
@@ -126,8 +117,6 @@ export default class ProductPreview {
     const timeline = gsap.timeline({ repeat: -1 })
 
     gsap.set([...images].slice(1), { opacity: 0 })
-
-    // Start the loop — begin with second image
     images.forEach((image) => {
       timeline
         .set(images, { opacity: 0 }) // Hide all images
@@ -139,9 +128,10 @@ export default class ProductPreview {
   }
 
   onResize() {
-    const { width, height } = this.container.getBoundingClientRect()
+    const { width, height } = this.ui.container.getBoundingClientRect()
     const vw = window.innerWidth / 100
 
+    // 1. calculate the 'arms' width for the clip path (cross)
     const armWidthVw = 5
     const armWidthPx = armWidthVw * vw
 
@@ -150,6 +140,7 @@ export default class ProductPreview {
       y: (armWidthPx / height) * 100
     }
 
+    // 2. calculate the scale for the preview container
     const widthInVw = width / vw
     const heightInVw = height / vw
     const shrinkVw = 5
@@ -158,5 +149,12 @@ export default class ProductPreview {
       x: (widthInVw - shrinkVw) / widthInVw,
       y: (heightInVw - shrinkVw) / heightInVw
     }
+
+    this.rebuildTimeline()
+  }
+
+  rebuildTimeline() {
+    this.timeline?.kill() // kill the current timeline
+    this.buildTimeline() // rebuild
   }
 }

@@ -3,15 +3,14 @@ import debounce from 'debounce'
 
 export default class ProductGrid {
   constructor() {
-    this.productPreviewLeft = null
-    this.productPreviewRight = null
-
     this.ui = {
       products: Array.from(document.querySelectorAll('.product')),
       containerLeft: document.querySelector('.product-preview.--left'),
       containerRight: document.querySelector('.product-preview.--right')
     }
 
+    this.productPreviewLeft = null
+    this.productPreviewRight = null
     this.activeProduct = null
     this.hoverDelay = null
 
