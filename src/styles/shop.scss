@@ -1,7 +1,7 @@
 // decorative
 .shop-categories {
   position: absolute;
-  top: 40px;
+  top: 1.5rem;
   left: 50%;
   transform: translate(-50%, 0);
 
@@ -16,6 +16,7 @@
     li {
       font-size: 20px;
       opacity: 0.3;
+      white-space: nowrap;
 
       sup {
         font-size: 0.6em;

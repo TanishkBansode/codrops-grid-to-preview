@@ -17,7 +17,7 @@ body {
   margin: 0;
   color: var(--color-text);
   background-color: var(--color-bg);
-  font-family: ui-monospace, monospace;
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -100,10 +100,12 @@ a {
   text-decoration: none;
   color: var(--color-link);
   outline: none;
+  opacity: 0.3;
   cursor: pointer;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    opacity: 1;
     color: var(--color-link-hover);
   }
 
@@ -123,7 +125,8 @@ a {
 }
 
 .frame {
-  padding: 3rem var(--page-padding) 0;
+  font-size: 12px;
+  padding: 1rem;
   display: grid;
   z-index: 1000;
   position: relative;
@@ -142,7 +145,6 @@ a {
     'sponsor';
 
   #cdawrap {
-    justify-self: start;
     grid-area: sponsor;
   }
 
@@ -186,28 +188,19 @@ a {
   }
 
   @media screen and (min-width: 53em) {
-    padding: var(--page-padding);
-    height: 100%;
     position: fixed;
-    top: 0;
+    padding: 1rem 5.5rem;
+    bottom: 0;
     left: 0;
     width: 100%;
-    grid-template-columns: auto auto auto auto 1fr;
+    grid-template-columns: auto auto auto auto auto 1fr;
     grid-template-rows: auto auto;
-    align-content: space-between;
-    grid-template-areas:
-      'title back github archive demos'
-      'tags tags tags sponsor sponsor';
+    align-content: center;
+    justify-content: center;
+    grid-template-areas: 'title back github archive tags sponsor';
 
-    .frame__tags {
-      align-self: end;
-    }
-
-    .frame__demos,
     #cdawrap {
-      justify-self: end;
       text-align: right;
-      max-width: 300px;
     }
   }
 }
@@ -215,8 +208,6 @@ a {
 .content {
   height: 100svh;
   width: 100svw;
-
-  padding: var(--page-padding);
   display: flex;
   flex-direction: column;
   position: relative;
