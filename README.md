@@ -4,7 +4,7 @@ A quick design experiment inspired this tutorial on animating e-commerce product
 
 ![Featured image](https://tympanus.net/codrops/wp-content/uploads/2025/05/ecommerce-product-grid-cover.jpg)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=93410)
+[Tutorial on Codrops](https://tympanus.net/codrops/?p=93410)
 
 [Demo](https://tympanus.net/Tutorials/GridToFullPreview/)
 
