@@ -13,7 +13,7 @@ A quick design experiment inspired this tutorial on animating e-commerce product
 Install dependencies:
 
 ```
-npm run install
+npm install
 ```
 
 Start compiling and running a [local server](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server):
