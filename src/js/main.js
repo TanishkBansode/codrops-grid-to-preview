@@ -1,4 +1,4 @@
-import '../styles/main.scss'
+import '../css/main.css'
 
 import ProductGrid from './product-grid'
 import { preloadImages } from './utils'

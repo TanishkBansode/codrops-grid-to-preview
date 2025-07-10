@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "sass": "^1.89.2",
     "vite": "^5.4.10"
   },
   "dependencies": {
     "debounce": "^2.2.0",
-    "gsap": "^3.13.0",
-    "sass": "^1.87.0"
+    "gsap": "^3.13.0"
   }
 }
